@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\Cup10.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Cup10.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\Cup11.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Cup11.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\Cup4.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Cup4.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\Cup5.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Cup5.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\Cup6.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Cup6.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\Cup7.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Cup7.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\Cup8.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Cup8.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\Cup9.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Cup9.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\cup1.jpeg",
+      "PackagePath": "staticwebassets\\Images\\cup1.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\cup2.jpeg",
+      "PackagePath": "staticwebassets\\Images\\cup2.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\cup3.jpeg",
+      "PackagePath": "staticwebassets\\Images\\cup3.jpeg"
+    },
+    {
+      "Id": "C:\\sem5\\sppr\\Lab1\\WEB_253503_MINICH.UI\\WEB_253503_MINICH.API\\wwwroot\\Images\\default-profile-picture.png",
+      "PackagePath": "staticwebassets\\Images\\default-profile-picture.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WEB_253503_MINICH.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.WEB_253503_MINICH.API.props",
+      "PackagePath": "build\\WEB_253503_MINICH.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.WEB_253503_MINICH.API.props",
+      "PackagePath": "buildMultiTargeting\\WEB_253503_MINICH.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.WEB_253503_MINICH.API.props",
+      "PackagePath": "buildTransitive\\WEB_253503_MINICH.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
