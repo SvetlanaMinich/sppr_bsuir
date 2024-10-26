@@ -10,16 +10,7 @@ namespace WEB_253503_MINICH.API.Data
             using var scope = app.Services.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-            // await context.Database.MigrateAsync();
-
-            //delete data
-            /*context.Cups.RemoveRange(context.Cups);
-            context.Categories.RemoveRange(context.Categories);
-            await context.Database.ExecuteSqlRawAsync("DELETE FROM cups;");
-            await context.Database.ExecuteSqlRawAsync("DELETE FROM categories;");
-            await context.Database.ExecuteSqlRawAsync("DELETE FROM sqlite_sequence WHERE name = 'cups';");
-            await context.Database.ExecuteSqlRawAsync("DELETE FROM sqlite_sequence WHERE name = 'categories';");
-            await context.SaveChangesAsync();*/
+            await context.Database.MigrateAsync();
 
             // Проверяем, пустая ли база данных, чтобы не дублировать записи
             if (context.Cups.Any() || context.Categories.Any()) return;

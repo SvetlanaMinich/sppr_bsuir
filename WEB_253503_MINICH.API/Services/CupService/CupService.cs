@@ -51,21 +51,21 @@ namespace WEB_253503_MINICH.API.Services.CupService
                 pageSize = _maxPageSize;
             }
 
-            var query = _appDbContext.Cups.Include(m => m.Category).AsQueryable();
+            var query = _appDbContext.Cups.AsQueryable();
             var dataList = new ProductListModel<Cup>();
 
             categoryNormalizedName = categoryNormalizedName == "all" ? null : categoryNormalizedName;
-            query = query.Where(m => categoryNormalizedName == null || m.Category.NormalizedName.Equals(categoryNormalizedName));
+            query = query.Where(m => categoryNormalizedName == null || m.Category!.NormalizedName.Equals(categoryNormalizedName));
 
             //count of elements in list
-            var itemsCount = await query.CountAsync();
-            if (itemsCount == 0)
+            var count = await query.CountAsync();
+            if (count == 0)
             {
                 return ResponseData<ProductListModel<Cup>>.Success(dataList);
             }
 
             //count of pages
-            int totalPages = (int)Math.Ceiling(itemsCount / (double)pageSize);
+            int totalPages = (int)Math.Ceiling(count / (double)pageSize);
 
             if (pageNo > totalPages)
             {
@@ -73,14 +73,19 @@ namespace WEB_253503_MINICH.API.Services.CupService
             }
 
             dataList.Items = await query
-                .OrderBy(m => m.Id)
-                .Skip((pageNo - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+                                .OrderBy(m => m.Id)
+                                .Skip((pageNo - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToListAsync();
             dataList.CurrentPage = pageNo;
             dataList.TotalPages = totalPages;
 
             return ResponseData<ProductListModel<Cup>>.Success(dataList);
+        }
+
+        public Task<ResponseData<string>> SaveImageAsync(int id, IFormFile formFile)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ResponseData<bool>> UpdateCupAsync(int id, Cup cup)

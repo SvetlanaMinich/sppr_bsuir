@@ -9,36 +9,37 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
     public class ApiCupService : IApiCupService
     {
         private readonly HttpClient _httpClient;
-        private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IConfiguration _configuration;
         private readonly ILogger<ApiCupService> _logger;
         private readonly string _pageSize;
         private readonly JsonSerializerOptions _serializerOptions;
 
-        public ApiCupService(IConfiguration configuration,
-            ILogger<ApiCupService> logger, IHttpClientFactory httpClientFactory)
+        public ApiCupService(HttpClient httpClient,
+                             IConfiguration configuration,
+                             ILogger<ApiCupService> logger)
         {
-            _configuration = configuration;
-            _pageSize = _configuration.GetSection("ItemsPerPage").Value!;
+            _pageSize = configuration.GetSection("ItemsPerPage").Value!;
             _serializerOptions = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
             _logger = logger;
-            _httpClientFactory = httpClientFactory;
-            _httpClient = _httpClientFactory.CreateClient("ApiClient");
+            _httpClient = httpClient;
         }
 
         public async Task<ResponseData<int>> CreateCupAsync(Cup product, IFormFile? formFile)
         {
-            var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
-            var response = await _httpClient.PostAsJsonAsync(new Uri(urlString.ToString()), product, _serializerOptions);
+            var uri = new Uri(_httpClient.BaseAddress!.AbsoluteUri + "Cups");
+            var response = await _httpClient.PostAsJsonAsync(uri,
+                                                            product,
+                                                            _serializerOptions);
 
             if (response.IsSuccessStatusCode)
             {
                 try
                 {
-                    return await response.Content.ReadFromJsonAsync<ResponseData<int>>(_serializerOptions);
+                    return await response
+                        .Content
+                        .ReadFromJsonAsync<ResponseData<int>>(_serializerOptions);
                 }
                 catch (JsonException ex)
                 {
@@ -63,35 +64,37 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
 
         public async Task<ResponseData<ProductListModel<Cup>>> GetCupListAsync(string? categoryNormalizedName, int pageNo = 1)
         {
-            //preparing url request
-            var urlString = new StringBuilder($"{_httpClient.BaseAddress}Cups");
+            // подготовка URL запроса
+            var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups");
 
-            var queryParams = new Dictionary<string, string>();
-
-            //add category in urlstring
+            // добавить категорию в маршрут 
             if (categoryNormalizedName != null)
             {
-                queryParams.Add("category", categoryNormalizedName);
+                urlString.Append($"{categoryNormalizedName}/");
             }
 
-            queryParams.Add("pageNo", pageNo.ToString());
+            // добавить номер страницы в маршрут 
+            if (pageNo > 1)
+            {
+                urlString.Append($"page{pageNo}");
+            };
 
-            //add page size in urlstring
+            // добавить размер страницы в строку запроса 
             if (!_pageSize.Equals("3"))
             {
-                queryParams.Add("pageSize", _pageSize);
+                urlString.Append(QueryString.Create("pageSize", _pageSize));
             }
 
-            var fullUrl = QueryHelpers.AddQueryString(urlString.ToString(), queryParams);
-
-            //send request to api
-            var response = await _httpClient.GetAsync(fullUrl);
+            // отправить запрос к API 
+            var response = await _httpClient.GetAsync(new Uri(urlString.ToString()));
 
             if (response.IsSuccessStatusCode)
             {
                 try
                 {
-                    return await response.Content.ReadFromJsonAsync<ResponseData<ProductListModel<Cup>>>(_serializerOptions);
+                    return await response
+                        .Content
+                        .ReadFromJsonAsync<ResponseData<ProductListModel<Cup>>>(_serializerOptions);
                 }
                 catch (JsonException ex)
                 {

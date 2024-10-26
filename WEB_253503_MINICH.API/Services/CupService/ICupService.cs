@@ -43,6 +43,14 @@ namespace WEB_253503_MINICH.API.Services.CupService
         /// <param name="formFile">Файл изображения</param>
         /// <returns>Созданный объект</returns>
         public Task<ResponseData<int>> CreateCupAsync(Cup cup);
+
+        /// <summary> 
+        /// Сохранить файл изображения для объекта 
+        /// </summary> 
+        /// <param name="id">Id объекта</param> 
+        /// <param name="formFile">файл изображения</param> 
+        /// <returns>Url к файлу изображения</returns 
+        public Task<ResponseData<string>> SaveImageAsync(int id, IFormFile formFile);
     }
 }
 

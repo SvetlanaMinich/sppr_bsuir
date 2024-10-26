@@ -8,27 +8,26 @@ namespace WEB_253503_MINICH.UI.Services.ApiCategoryService
     public class ApiCategoryService : IApiCategoryService
     {
         private readonly HttpClient _httpClient;
-        private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IConfiguration _configuration;
         private readonly ILogger<ApiCategoryService> _logger;
         private readonly string _pageSize;
         private readonly JsonSerializerOptions _serializerOptions;
 
-        public ApiCategoryService(IConfiguration configuration, ILogger<ApiCategoryService> logger, IHttpClientFactory httpClientFactory)
+        public ApiCategoryService(IConfiguration configuration, 
+            ILogger<ApiCategoryService> logger, 
+            HttpClient httpClient)
         {
-            _configuration = configuration;
-            _pageSize = _configuration.GetSection("ItemsPerPage").Value!;
+            _pageSize = configuration.GetSection("ItemsPerPage").Value!;
             _serializerOptions = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
             _logger = logger;
-            _httpClientFactory = httpClientFactory;
-            _httpClient = _httpClientFactory.CreateClient("ApiClient");
+            _httpClient = httpClient;
         }
 
         public async Task<ResponseData<List<Category>>> GetCategoryListAsync()
         {
+            
             var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Categories/");
             var response = await _httpClient.GetAsync(new Uri(urlString.ToString()));
 

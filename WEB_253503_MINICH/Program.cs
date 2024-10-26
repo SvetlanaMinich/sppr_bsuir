@@ -1,9 +1,15 @@
+using WEB_253503_MINICH.UI;
 using WEB_253503_MINICH.UI.Extensions;
+using WEB_253503_MINICH.UI.Services.ApiCupService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var uriData = builder.Configuration.GetSection("UriData").Get<UriData>();
+builder.Services.AddHttpClient<IApiCupService, ApiCupService>(opt =>opt.BaseAddress = new Uri(uriData!.ApiUri));
+
 // Registration new services
 builder.RegisterCustomServices();
 
