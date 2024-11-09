@@ -40,7 +40,6 @@ C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Sy
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\System.Composition.Hosting.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\System.Composition.Runtime.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\System.Composition.TypedParts.dll
-C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\System.Text.Json.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -264,3 +263,19 @@ C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\WE
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\WEB_253503_MINICH.UI.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\WEB_253503_MINICH.UI.pdb
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\obj\Debug\net8.0\WEB_253503_MINICH.API.sourcelink.json
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.AspNetCore.Components.QuickGrid.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Web.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\Microsoft.JSInterop.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.API\bin\Debug\net8.0\System.Formats.Asn1.dll

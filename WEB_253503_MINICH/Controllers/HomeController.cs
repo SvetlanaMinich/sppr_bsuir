@@ -7,7 +7,7 @@ namespace WEB_253503_MINICH.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Title"] = "Лабораторная работа №3";
+            ViewData["Title"] = "Лабораторная работа №5";
 
             var listItems = new List<ListDemo>
             {

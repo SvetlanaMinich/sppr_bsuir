@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WEB_253503_MINICH.Domain.Entities;
-using WEB_253503_MINICH.UI.Services.CategoryService;
-using WEB_253503_MINICH.UI.Services.CupService;
+using WEB_253503_MINICH.UI.Services.ApiCategoryService;
+using WEB_253503_MINICH.UI.Services.ApiCupService;
 using WEB_253503_MINICH.Domain.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -20,7 +20,7 @@ namespace WEB_253503_MINICH.UI.Controllers
         {
             int pageNumber = page;
             var categories = await _categoryService.GetCategoryListAsync();
-            var currentCategory = category != null ? categories.Data?.Find(g => g.NormalizedName!.Equals(category))?.Name : "Все";
+            var currentCategory = category != null ? categories.Data?.Find(g => g.NormalizedName!.Equals(category))?.Name : "All";
             ViewData["currentCategory"] = currentCategory;
             ViewData["categories"] = _categoryService.GetCategoryListAsync().Result.Data;
 

@@ -9,3 +9,4 @@ C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.Domain\obj\Debug\net8.0
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.Domain\obj\Debug\net8.0\refint\WEB_253503_MINICH.Domain.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.Domain\obj\Debug\net8.0\WEB_253503_MINICH.Domain.pdb
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.Domain\obj\Debug\net8.0\ref\WEB_253503_MINICH.Domain.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH.Domain\obj\Debug\net8.0\WEB_253503_MINICH.Domain.sourcelink.json

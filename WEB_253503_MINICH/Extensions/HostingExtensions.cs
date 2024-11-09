@@ -1,5 +1,6 @@
-﻿using WEB_253503_MINICH.UI.Services.CategoryService;
-using WEB_253503_MINICH.UI.Services.CupService;
+﻿using WEB_253503_MINICH.UI.Services.ApiCategoryService;
+using WEB_253503_MINICH.UI.Services.ApiCupService;
+using WEB_253503_MINICH.UI.Services.FileService;
 
 namespace WEB_253503_MINICH.UI.Extensions
 {
@@ -7,8 +8,9 @@ namespace WEB_253503_MINICH.UI.Extensions
     {
         public static void RegisterCustomServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<Services.CategoryService.ICategoryService, MemoryCategoryService>();
-            builder.Services.AddScoped<Services.CupService.ICupService, MemoryCupService>();
+            builder.Services.AddScoped<ICategoryService, ApiCategoryService>();
+            builder.Services.AddScoped<ICupService, ApiCupService>();
+            builder.Services.AddScoped<IFileService, ApiFileService>();
         }
     }
 }

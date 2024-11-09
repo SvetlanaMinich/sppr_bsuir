@@ -55,23 +55,6 @@ namespace WEB_253503_MINICH.API.Data
 
             await context.Cups.AddRangeAsync(cups);
             await context.SaveChangesAsync();
-
-            /*// Сохранение изображений в папку wwwroot/Images
-            var imagesFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
-            if (!Directory.Exists(imagesFolder))
-            {
-                Directory.CreateDirectory(imagesFolder);
-            }
-
-            foreach (var cup in cups)
-            {
-                var sourcePath = Path.Combine("SeedDataImages", Path.GetFileName(cup.ImgPath)); // Исходные изображения
-                var destinationPath = Path.Combine(imagesFolder, Path.GetFileName(cup.ImgPath));
-                if (File.Exists(sourcePath) && !File.Exists(destinationPath))
-                {
-                    File.Copy(sourcePath, destinationPath);
-                }
-            }*/
         }
     }
 }

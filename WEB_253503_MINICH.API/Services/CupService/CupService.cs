@@ -54,7 +54,7 @@ namespace WEB_253503_MINICH.API.Services.CupService
             var query = _appDbContext.Cups.AsQueryable();
             var dataList = new ProductListModel<Cup>();
 
-            categoryNormalizedName = categoryNormalizedName == "all" ? null : categoryNormalizedName;
+            categoryNormalizedName = categoryNormalizedName == "All" ? null : categoryNormalizedName;
             query = query.Where(m => categoryNormalizedName == null || m.Category!.NormalizedName.Equals(categoryNormalizedName));
 
             //count of elements in list

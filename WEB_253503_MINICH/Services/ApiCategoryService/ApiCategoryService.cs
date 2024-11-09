@@ -5,7 +5,7 @@ using WEB_253503_MINICH.Domain.Entities;
 
 namespace WEB_253503_MINICH.UI.Services.ApiCategoryService
 {
-    public class ApiCategoryService : IApiCategoryService
+    public class ApiCategoryService : ICategoryService
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<ApiCategoryService> _logger;
@@ -27,8 +27,7 @@ namespace WEB_253503_MINICH.UI.Services.ApiCategoryService
 
         public async Task<ResponseData<List<Category>>> GetCategoryListAsync()
         {
-            
-            var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Categories/");
+            var urlString = new StringBuilder("https://localhost:7002/api/Categories");
             var response = await _httpClient.GetAsync(new Uri(urlString.ToString()));
 
             if (response.IsSuccessStatusCode)
