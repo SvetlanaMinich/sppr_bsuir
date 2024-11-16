@@ -26,19 +26,19 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
         /// <param name="product">объект с новыми параметрами</param>
         /// <param name="formFile">Файл изображения</param>
         /// <returns></returns>
-        public Task<ResponseData<bool>> UpdateCupAsync(int id, Cup product, IFormFile? formFile);
+        public Task UpdateCupAsync(int id, Cup product, IFormFile? formFile);
         /// <summary>
         /// Удаление объекта
         /// </summary>
         /// <param name="id">Id удаляемомго объекта</param>
         /// <returns></returns>
-        public Task<ResponseData<bool>> DeleteCupAsync(int id);
+        public Task DeleteCupAsync(int id);
         /// <summary>
         /// Создание объекта
         /// </summary>
         /// <param name="product">Новый объект</param>
         /// <param name="formFile">Файл изображения</param>
         /// <returns>Созданный объект</returns>
-        public Task<ResponseData<int>> CreateCupAsync(Cup product, IFormFile? formFile);
+        public Task<ResponseData<Cup>> CreateCupAsync(Cup product, IFormFile? formFile);
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using WEB_253503_MINICH.Domain.Entities;
-using WEB_253503_MINICH.UI.Data;
+/*using WEB_253503_MINICH.UI.Data;*/
 using WEB_253503_MINICH.UI.Services.ApiCategoryService;
 using WEB_253503_MINICH.UI.Services.ApiCupService;
 

@@ -5,8 +5,8 @@ using WEB_253503_MINICH.API.Services.CupService;
 
 namespace WEB_253503_MINICH.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CupsController : ControllerBase
     {
         
@@ -19,7 +19,7 @@ namespace WEB_253503_MINICH.API.Controllers
 
         // GET: api/Cups
         [HttpGet]
-        public async Task<ActionResult<ResponseData<ProductListModel<Cup>>>> GetCups(string? category, int pageNo = 1, int pageSize = 3)
+        public async Task<ActionResult<ResponseData<ProductListModel<Cup>>>> GetCups(string? category, [FromQuery]int pageNo = 1, [FromQuery]int pageSize = 3)
         {
             var response = await _cupService.GetCupListAsync(category, pageNo, pageSize);
 
@@ -32,8 +32,8 @@ namespace WEB_253503_MINICH.API.Controllers
         }
 
         // GET: api/Cups/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ResponseData<Cup>>> GetCup(int id)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Cup>> GetCup(int id)
         {
             var response = await _cupService.GetCupByIdAsync(id);
 
@@ -42,12 +42,12 @@ namespace WEB_253503_MINICH.API.Controllers
                 return NotFound();
             }
 
-            return new ActionResult<ResponseData<Cup>>(response);
+            return new ActionResult<Cup>(response.Data!);
         }
 
         // PUT: api/Cups/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id:int}")]
+        /*[HttpPut("{id:int}")]
         public async Task<ActionResult<ResponseData<bool>>> PutCup(int id, Cup cup)
         {
             if (id != cup.Id)
@@ -63,11 +63,11 @@ namespace WEB_253503_MINICH.API.Controllers
             }
 
             return new ActionResult<ResponseData<bool>>(response);
-        }
+        }*/
 
         // POST: api/Cups
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        /*[HttpPost]
         public async Task<ActionResult<ResponseData<int>>> PostCup(Cup cup)
         {
             var response = await _cupService.CreateCupAsync(cup);
@@ -78,10 +78,10 @@ namespace WEB_253503_MINICH.API.Controllers
             }
 
             return new ActionResult<ResponseData<int>>(response);
-        }
+        }*/
 
         // DELETE: api/Cups/5
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteCup(int id)
         {
             var response = await _cupService.DeleteCupAsync(id);
@@ -92,7 +92,7 @@ namespace WEB_253503_MINICH.API.Controllers
             }
 
             return new ActionResult<bool>(response.Data);
-        }
+        }*/
 
         /*private bool CupExists(int id)
         {

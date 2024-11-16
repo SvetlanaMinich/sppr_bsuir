@@ -1,24 +1,26 @@
-using WEB_253503_MINICH.UI;
-using WEB_253503_MINICH.UI.Data;
+/*using WEB_253503_MINICH.UI.Data;*/
 using WEB_253503_MINICH.UI.Extensions;
+using WEB_253503_MINICH.UI.Models;
 using WEB_253503_MINICH.UI.Services.ApiCupService;
-using Microsoft.EntityFrameworkCore;
+using WEB_253503_MINICH.UI.Services.ApiCategoryService;
+using WEB_253503_MINICH.UI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
-
+/*builder.Services.AddRazorPages();*/
+builder.Services.Configure<UriData>(builder.Configuration.GetSection("UriData"));
 var uriData = builder.Configuration.GetSection("UriData").Get<UriData>();
-builder.Services.AddHttpClient("ApiClient", client =>
+
+builder.Services.AddHttpClient("MyApiClient", client =>
 {
-    client.BaseAddress = new Uri(uriData!.ApiUri);
+    client.BaseAddress = new Uri(uriData.ApiUri);
 });
 
-string connectionStr = builder.Configuration.GetConnectionString("default")!;
+/*string connectionStr = builder.Configuration.GetConnectionString("default")!;
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(connectionStr));
+    options.UseSqlite(connectionStr));*/
 
 // Registration new services
 builder.RegisterCustomServices();
@@ -40,19 +42,19 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+/*app.MapRazorPages();*/
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
+/*app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapAreaControllerRoute(
     name: "AreaAdmin",
     areaName: "Admin",
-    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");*/
 
 app.Run();

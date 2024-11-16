@@ -1,5 +1,4 @@
-﻿using Humanizer.Localisation;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using WEB_253503_MINICH.API.Data;
 using WEB_253503_MINICH.Domain.Entities;
 using WEB_253503_MINICH.Domain.Models;

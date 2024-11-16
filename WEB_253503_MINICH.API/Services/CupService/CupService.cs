@@ -14,26 +14,28 @@ namespace WEB_253503_MINICH.API.Services.CupService
         {
             _appDbContext = appDbContext;
         }
-        public async Task<ResponseData<int>> CreateCupAsync(Cup cup)
+        public async Task<ResponseData<Cup>> CreateCupAsync(Cup cup, IFormFile? formFile)
         {
-            var new_cup = await _appDbContext.Cups.AddAsync(cup);
+            /*var new_cup = await _appDbContext.Cups.AddAsync(cup);
             await _appDbContext.SaveChangesAsync();
-            return ResponseData<int>.Success(new_cup.Entity.Id);
+            return ResponseData<int>.Success(new_cup.Entity.Id);*/
+            throw new NotImplementedException();
         }
 
-        public async Task<ResponseData<bool>> DeleteCupAsync(int id)
+        public async Task DeleteCupAsync(int id)
         {
-            if (id < 0)
+            /*if (id < 0)
             {
                 return ResponseData<bool>.Error("Cup does not exist.");
             }
             await _appDbContext.Cups.Where(m => m.Id == id).ExecuteDeleteAsync();
-            return ResponseData<bool>.Success(true);
+            return ResponseData<bool>.Success(true);*/
+            throw new NotImplementedException();
         }
 
         public async Task<ResponseData<Cup>> GetCupByIdAsync(int id)
         {
-            if (id < 0)
+            /*if (id < 0)
             {
                 return ResponseData<Cup>.Error("Cup does not exist.");
             }
@@ -41,7 +43,8 @@ namespace WEB_253503_MINICH.API.Services.CupService
                 .AsNoTracking()
                 .Include(m => m.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            return ResponseData<Cup>.Success(cup!);
+            return ResponseData<Cup>.Success(cup!);*/
+            throw new NotImplementedException();
         }
 
         public async Task<ResponseData<ProductListModel<Cup>>> GetCupListAsync(string? categoryNormalizedName, int pageNo = 1, int pageSize = 3)
@@ -73,7 +76,6 @@ namespace WEB_253503_MINICH.API.Services.CupService
             }
 
             dataList.Items = await query
-                                .OrderBy(m => m.Id)
                                 .Skip((pageNo - 1) * pageSize)
                                 .Take(pageSize)
                                 .ToListAsync();
@@ -88,9 +90,9 @@ namespace WEB_253503_MINICH.API.Services.CupService
             throw new NotImplementedException();
         }
 
-        public async Task<ResponseData<bool>> UpdateCupAsync(int id, Cup cup)
+        public async Task UpdateCupAsync(int id, Cup cup, IFormFile? formFile)
         {
-            if (id < 0 || id != cup.Id)
+            /*if (id < 0 || id != cup.Id)
             {
                 return ResponseData<bool>.Error("Invalid cup Id");
             }
@@ -123,7 +125,8 @@ namespace WEB_253503_MINICH.API.Services.CupService
 
             await _appDbContext.SaveChangesAsync();
 
-            return ResponseData<bool>.Success(true);
+            return ResponseData<bool>.Success(true);*/
+            throw new NotImplementedException();
         }
     }
 }

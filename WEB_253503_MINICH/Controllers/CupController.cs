@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WEB_253503_MINICH.Domain.Entities;
+using WEB_253503_MINICH.Domain.Models;
 using WEB_253503_MINICH.UI.Services.ApiCategoryService;
 using WEB_253503_MINICH.UI.Services.ApiCupService;
-using WEB_253503_MINICH.Domain.Models;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace WEB_253503_MINICH.UI.Controllers
 {
@@ -16,20 +16,19 @@ namespace WEB_253503_MINICH.UI.Controllers
             _cupService = cupService;
             _categoryService = categoryService;
         }
-        public async Task<IActionResult> Index(string? category, [FromQuery]int page)
+        public async Task<IActionResult> Index(string? category, int? page = 1)
         {
-            int pageNumber = page;
+            var cupResponse = await _cupService.GetCupListAsync(category, page.Value);
             var categories = await _categoryService.GetCategoryListAsync();
+            if (!cupResponse.Successfull)
+                return NotFound(cupResponse.ErrorMessage);
+
             var currentCategory = category != null ? categories.Data?.Find(g => g.NormalizedName!.Equals(category))?.Name : "All";
             ViewData["currentCategory"] = currentCategory;
             ViewData["categories"] = _categoryService.GetCategoryListAsync().Result.Data;
-
-            var cupResponse = await _cupService.GetCupListAsync(category, page);
-            if (!cupResponse.Successfull)
-                return NotFound(cupResponse.ErrorMessage);
             ViewData["totalPages"] = cupResponse.Data!.TotalPages;
 
-            return View(new ProductListModel<Cup> { Items = cupResponse.Data.Items, CurrentPage = page, TotalPages = cupResponse.Data!.TotalPages });
+            return View(new ProductListModel<Cup> { Items = cupResponse.Data.Items, CurrentPage = page.Value, TotalPages = cupResponse.Data!.TotalPages });
         }
     }
 }

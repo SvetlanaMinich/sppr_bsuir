@@ -11,17 +11,16 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICupService, CupService>();
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("Default")));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string connectionStr = builder.Configuration.GetConnectionString("default")!;
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(connectionStr));
-
 var app = builder.Build();
 
-await DbInitializer.SeedData(app);
+/*await DbInitializer.SeedData(app);*/
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

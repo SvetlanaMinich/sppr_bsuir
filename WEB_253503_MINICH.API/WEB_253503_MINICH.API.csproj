@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WEB_253503_MINICH.Domain\WEB_253503_MINICH.Domain.csproj" />
-    <ProjectReference Include="..\WEB_253503_MINICH\WEB_253503_MINICH.UI.csproj" />
   </ItemGroup>
 
 </Project>

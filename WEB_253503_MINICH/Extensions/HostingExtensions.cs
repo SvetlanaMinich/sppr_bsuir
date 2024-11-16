@@ -1,6 +1,6 @@
 ﻿using WEB_253503_MINICH.UI.Services.ApiCategoryService;
 using WEB_253503_MINICH.UI.Services.ApiCupService;
-using WEB_253503_MINICH.UI.Services.FileService;
+/*using WEB_253503_MINICH.UI.Services.FileService;*/
 
 namespace WEB_253503_MINICH.UI.Extensions
 {
@@ -10,7 +10,7 @@ namespace WEB_253503_MINICH.UI.Extensions
         {
             builder.Services.AddScoped<ICategoryService, ApiCategoryService>();
             builder.Services.AddScoped<ICupService, ApiCupService>();
-            builder.Services.AddScoped<IFileService, ApiFileService>();
+            /*builder.Services.AddScoped<IFileService, ApiFileService>();*/
         }
     }
 }

@@ -1,20 +1,26 @@
-﻿using System.Text.Json;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net.Http;
+using System.Text.Json;
 using System.Text;
 using WEB_253503_MINICH.Domain.Models;
 using WEB_253503_MINICH.Domain.Entities;
+using WEB_253503_MINICH.UI.Services.CategoryService;
 
 namespace WEB_253503_MINICH.UI.Services.ApiCategoryService
 {
     public class ApiCategoryService : ICategoryService
     {
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _configuration;
         private readonly ILogger<ApiCategoryService> _logger;
         private readonly string _pageSize;
         private readonly JsonSerializerOptions _serializerOptions;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public ApiCategoryService(IConfiguration configuration, 
-            ILogger<ApiCategoryService> logger, 
-            HttpClient httpClient)
+        public ApiCategoryService(HttpClient httpClient, 
+                                    IConfiguration configuration, 
+                                    ILogger<ApiCategoryService> logger, 
+                                    IHttpClientFactory httpClientFactory)
         {
             _pageSize = configuration.GetSection("ItemsPerPage").Value!;
             _serializerOptions = new JsonSerializerOptions()
@@ -22,12 +28,13 @@ namespace WEB_253503_MINICH.UI.Services.ApiCategoryService
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
             _logger = logger;
-            _httpClient = httpClient;
+            _httpClientFactory = httpClientFactory;
+            _httpClient = _httpClientFactory.CreateClient("MyApiClient");
         }
 
         public async Task<ResponseData<List<Category>>> GetCategoryListAsync()
         {
-            var urlString = new StringBuilder("https://localhost:7002/api/Categories");
+            var urlString = new StringBuilder($"{_httpClient.BaseAddress.AbsoluteUri}Categories");
             var response = await _httpClient.GetAsync(new Uri(urlString.ToString()));
 
             if (response.IsSuccessStatusCode)
@@ -35,7 +42,7 @@ namespace WEB_253503_MINICH.UI.Services.ApiCategoryService
                 try
                 {
                     var data = await response.Content.ReadFromJsonAsync<List<Category>>(_serializerOptions);
-                    return ResponseData<List<Category>>.Success(data!);
+                    return ResponseData<List<Category>>.Success(data);
                 }
                 catch (JsonException ex)
                 {
