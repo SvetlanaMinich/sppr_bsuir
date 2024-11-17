@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WEB_253503_MINICH.API.Services.CategoryService;
 using WEB_253503_MINICH.Domain.Entities;
+using WEB_253503_MINICH.Domain.Models;
 
 namespace WEB_253503_MINICH.API.Controllers
 {

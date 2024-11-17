@@ -16,35 +16,28 @@ namespace WEB_253503_MINICH.API.Services.CupService
         }
         public async Task<ResponseData<Cup>> CreateCupAsync(Cup cup, IFormFile? formFile)
         {
-            /*var new_cup = await _appDbContext.Cups.AddAsync(cup);
+            await _appDbContext.Cups.AddAsync(cup);
             await _appDbContext.SaveChangesAsync();
-            return ResponseData<int>.Success(new_cup.Entity.Id);*/
-            throw new NotImplementedException();
+            return ResponseData<Cup>.Success(cup);
         }
 
         public async Task DeleteCupAsync(int id)
         {
-            /*if (id < 0)
+            if (id < 0)
             {
-                return ResponseData<bool>.Error("Cup does not exist.");
+                throw new ArgumentException("Cup does not exist.");
             }
-            await _appDbContext.Cups.Where(m => m.Id == id).ExecuteDeleteAsync();
-            return ResponseData<bool>.Success(true);*/
-            throw new NotImplementedException();
+            /*await _appDbContext.Cups.Where(m => m.Id == id).ExecuteDeleteAsync();*/
         }
 
         public async Task<ResponseData<Cup>> GetCupByIdAsync(int id)
         {
-            /*if (id < 0)
+            if (id < 0)
             {
                 return ResponseData<Cup>.Error("Cup does not exist.");
             }
-            var cup = await _appDbContext.Cups
-                .AsNoTracking()
-                .Include(m => m.Category)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            return ResponseData<Cup>.Success(cup!);*/
-            throw new NotImplementedException();
+            var cup = await _appDbContext.Cups.FindAsync(id);
+            return ResponseData<Cup>.Success(cup);
         }
 
         public async Task<ResponseData<ProductListModel<Cup>>> GetCupListAsync(string? categoryNormalizedName, int pageNo = 1, int pageSize = 3)
@@ -85,48 +78,40 @@ namespace WEB_253503_MINICH.API.Services.CupService
             return ResponseData<ProductListModel<Cup>>.Success(dataList);
         }
 
-        public Task<ResponseData<string>> SaveImageAsync(int id, IFormFile formFile)
+        public async Task<ResponseData<string>> SaveImageAsync(int id, IFormFile formFile)
         {
-            throw new NotImplementedException();
+            if (formFile == null || formFile.Length == 0)
+            {
+                return ResponseData<string>.Error("No file uploaded.");
+            }
+
+            var imagePath = Path.Combine("wwwroot", "Images");
+            if (!Directory.Exists(imagePath))
+            {
+                Directory.CreateDirectory(imagePath);
+            }
+
+            var fileName = formFile.FileName;
+            var filePath = Path.Combine(imagePath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await formFile.CopyToAsync(stream);
+            }
+
+            var url = $"{Path.Combine("Images", fileName)}";
+            return ResponseData<string>.Success(url);
         }
 
         public async Task UpdateCupAsync(int id, Cup cup, IFormFile? formFile)
         {
-            /*if (id < 0 || id != cup.Id)
+            if (id < 0 || id != cup.Id)
             {
-                return ResponseData<bool>.Error("Invalid cup Id");
+                throw new ArgumentException("Invalid cup Id");
             }
 
-            var selectedCup = await _appDbContext.Cups.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (selectedCup == null)
-            {
-                return ResponseData<bool>.Error("Cup not found");
-            }
-
-            if (cup.ImgPath == null)
-            {
-                cup.ImgPath = selectedCup.ImgPath;
-            }
-
-            selectedCup.Name = cup.Name;
-            selectedCup.Description = cup.Description;
-            selectedCup.Price = cup.Price;
-            selectedCup.ImgPath = cup.ImgPath;
-
-            if (cup.Category != null)
-            {
-                var category = await _appDbContext.Categories.FindAsync(cup.Category.Id);
-                if (category != null)
-                {
-                    selectedCup.Category = category;
-                }
-            }
-
+            _appDbContext.Entry(cup).State = EntityState.Modified;
             await _appDbContext.SaveChangesAsync();
-
-            return ResponseData<bool>.Success(true);*/
-            throw new NotImplementedException();
         }
     }
 }

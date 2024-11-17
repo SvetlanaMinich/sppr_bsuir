@@ -123,10 +123,8 @@ C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Micros
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.CodeAnalysis.Scripting.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.DiaSymReader.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.DotNet.Scaffolding.Shared.dll
-C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.JSInterop.dll
@@ -272,3 +270,5 @@ C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\runtim
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll

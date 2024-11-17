@@ -1,6 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http;
-using System.Text;
+﻿using System.Text;
 
 namespace WEB_253503_MINICH.UI.Services.FileService
 {

@@ -18,7 +18,7 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
         /// </summary>
         /// <param name="id">Идентификатор объекта</param>
         /// <returns>Найденный объект или null, если объект не найден</returns>
-        public Task<ResponseData<Cup>> GetCupByIdAsync(int id);
+        public Task<ResponseData<Cup>> GetCupByIdAsync(int? id);
         /// <summary>
         /// Обновление объекта
         /// </summary>

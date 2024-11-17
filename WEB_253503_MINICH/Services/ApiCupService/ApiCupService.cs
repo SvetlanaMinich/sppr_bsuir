@@ -2,7 +2,7 @@
 using System.Text.Json;
 using WEB_253503_MINICH.Domain.Entities;
 using WEB_253503_MINICH.Domain.Models;
-/*using WEB_253503_MINICH.UI.Services.FileService;*/
+using WEB_253503_MINICH.UI.Services.FileService;
 
 namespace WEB_253503_MINICH.UI.Services.ApiCupService
 {
@@ -14,12 +14,13 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
         private readonly string _pageSize;
         private readonly JsonSerializerOptions _serializerOptions;
         private readonly IHttpClientFactory _httpClientFactory;
-        /*private readonly IFileService _fileService;*/
+        private readonly IFileService _fileService;
 
         public ApiCupService(HttpClient httpClient, 
                                 IConfiguration configuration, 
                                 ILogger<ApiCupService> logger, 
-                                IHttpClientFactory httpClientFactory)
+                                IHttpClientFactory httpClientFactory,
+                                IFileService fileService)
         {
             _pageSize = configuration.GetSection("ItemsPerPage").Value!;
             _serializerOptions = new JsonSerializerOptions()
@@ -30,12 +31,12 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
             _httpClientFactory = httpClientFactory;
 
             _httpClient = _httpClientFactory.CreateClient("MyApiClient"); ;
-            /*_fileService = fileService;*/
+            _fileService = fileService;
         }
 
         public async Task<ResponseData<Cup>> CreateCupAsync(Cup product, IFormFile? formFile)
         {
-            /*// Первоначально использовать картинку по умолчанию 
+            // Первоначально использовать картинку по умолчанию 
             product.ImgPath = "Images/cup1.jpg";
             // Сохранить файл изображения 
             if (formFile != null)
@@ -46,7 +47,7 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
                     product.ImgPath = imageUrl;
             }
 
-            var url = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}cups/");
+            var url = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
             var response = await _httpClient.PostAsJsonAsync(new Uri(url.ToString()),
                                                             product,
                                                             _serializerOptions);
@@ -57,23 +58,22 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
                 {
                     return await response
                         .Content
-                        .ReadFromJsonAsync<ResponseData<int>>(_serializerOptions);
+                        .ReadFromJsonAsync<ResponseData<Cup>>(_serializerOptions);
                 }
                 catch (JsonException ex)
                 {
                     _logger.LogError($"-----> Ошибка: {ex.Message}");
-                    return ResponseData<int>.Error($"Ошибка: {ex.Message}");
+                    return ResponseData<Cup>.Error($"Ошибка: {ex.Message}");
                 }
             }
             _logger.LogError($"-----> Объект не создан. Error: {response.StatusCode.ToString()}");
-            return ResponseData<int>
-                .Error($"Объект не добавлен. Error: {response.StatusCode.ToString()}");*/
-            throw new NotImplementedException();
+            return ResponseData<Cup>
+                .Error($"Объект не добавлен. Error: {response.StatusCode.ToString()}");
         }
 
         public async Task DeleteCupAsync(int id)
         {
-            /*var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}cups/");
+            var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
             urlString.Append($"{id}");
 
             var response = await _httpClient.DeleteAsync(new Uri(urlString.ToString()));
@@ -82,20 +82,20 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
             {
                 try
                 {
-                    return await response.Content.ReadFromJsonAsync<ResponseData<bool>>(_serializerOptions);
+                    await response.Content.ReadFromJsonAsync<ResponseData<bool>>(_serializerOptions);
                 }
                 catch (JsonException ex)
                 {
-                    return ResponseData<bool>.Error($"Error: {ex.Message}");
+                    throw new ArgumentException($"Error: {ex.Message}");
                 }
             }
-            return ResponseData<bool>.Error($"Error: {response.StatusCode.ToString()}");*/
-            throw new NotImplementedException();
+            throw new ArgumentException($"Error: {response.StatusCode.ToString()}");
         }
 
-        public async Task<ResponseData<Cup>> GetCupByIdAsync(int id)
+        public async Task<ResponseData<Cup>> GetCupByIdAsync(int? id)
         {
-            /*var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}cups/");
+            var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
+            Console.WriteLine(urlString.ToString());
             urlString.Append($"{id}");
 
             var response = await _httpClient.GetAsync(new Uri(urlString.ToString()));
@@ -111,8 +111,7 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
                     return ResponseData<Cup>.Error($"Error: {ex.Message}");
                 }
             }
-            return ResponseData<Cup>.Error($"Error: {response.StatusCode.ToString()}");*/
-            throw new NotImplementedException();
+            return ResponseData<Cup>.Error($"Error: {response.StatusCode.ToString()}");
 
         }
 
@@ -153,7 +152,7 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
 
         public async Task UpdateCupAsync(int id, Cup product, IFormFile? formFile)
         {
-            /*// Первоначально использовать картинку по умолчанию 
+            // Первоначально использовать картинку по умолчанию 
             product.ImgPath = "Images/cup1.jpg";
             // Сохранить файл изображения 
             if (formFile != null)
@@ -163,7 +162,7 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
                 if (!string.IsNullOrEmpty(imageUrl))
                     product.ImgPath = imageUrl;
             }
-            var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}cups/");
+            var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
             urlString.Append($"{id}");
 
             var response = await _httpClient.PutAsJsonAsync(new Uri(urlString.ToString()), product, _serializerOptions);
@@ -172,18 +171,16 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
             {
                 try
                 {
-                    return await response.Content.ReadFromJsonAsync<ResponseData<bool>>(_serializerOptions);
+                    await response.Content.ReadFromJsonAsync<ResponseData<bool>>(_serializerOptions);
                 }
                 catch (JsonException ex)
                 {
                     _logger.LogError($"Error: {ex.Message}");
-                    return ResponseData<bool>.Error($"Error: {ex.Message}");
+                    throw new ArgumentException($"Error: {ex.Message}");
                 }
             }
             _logger.LogError($"Object not updated. Error: {response.StatusCode.ToString()}");
-            return ResponseData<bool>
-                .Error($"Object not updated. Error: {response.StatusCode.ToString()}");*/
-            throw new NotImplementedException();
+            throw new ArgumentException($"Object not updated. Error: {response.StatusCode.ToString()}");
 
         }
     }

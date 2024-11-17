@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WEB_253503_MINICH.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7a2908acd0b4213ff3bfde39134edf75324c62d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29fa9c1b39d759ab8240568c031ea6575c0c4caf")]
 [assembly: System.Reflection.AssemblyProductAttribute("WEB_253503_MINICH.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WEB_253503_MINICH.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

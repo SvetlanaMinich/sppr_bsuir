@@ -49,10 +49,7 @@ namespace WEB_253503_MINICH.API.Controllers
                 fileInfo.Delete();
                 return Ok(new { message = "File deleted successfully" });
             }
-            else
-            {
-                return Ok(new { message = "File not found" });
-            }
+            return NotFound("File not found.");
         }
     }
 }

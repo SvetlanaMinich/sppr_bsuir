@@ -26,24 +26,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\sem5\sppr\Lab1\WEB_253503_MINICH.UI\WEB_253503_MINICH
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcQ3JlYXRlLmNzaHRtbA==
+[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Product/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUHJvZHVjdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcRGVsZXRlLmNzaHRtbA==
+[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Product/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUHJvZHVjdFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcRGV0YWlscy5jc2h0bWw=
+[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Product/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcRWRpdC5jc2h0bWw=
+[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Product/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUHJvZHVjdFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcSW5kZXguY3NodG1s
+[C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/Pages/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/sem5/sppr/Lab1/WEB_253503_MINICH.UI/WEB_253503_MINICH/Areas/Admin/_ViewImports.cshtml]

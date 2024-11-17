@@ -5,24 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using WEB_253503_MINICH.UI.Data;
 using WEB_253503_MINICH.Domain.Entities;
-/*using WEB_253503_MINICH.UI.Data;*/
 using WEB_253503_MINICH.UI.Services.ApiCategoryService;
 using WEB_253503_MINICH.UI.Services.ApiCupService;
 
-namespace WEB_253503_MINICH.UI.Areas.Admin.Pages
+namespace WEB_253503_MINICH.UI.Areas.Admin.Pages.Product
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
-        private readonly ICategoryService _categoryService;
         private readonly ICupService _cupService;
-
-        public DetailsModel(ICupService cupService, ICategoryService categoryService)
+        public DeleteModel(ICupService cupService)
         {
             _cupService = cupService;
-            _categoryService = categoryService;
         }
 
+        [BindProperty]
         public Cup Cup { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -32,16 +30,25 @@ namespace WEB_253503_MINICH.UI.Areas.Admin.Pages
                 return NotFound();
             }
 
-            var cup = (await _cupService.GetCupByIdAsync(id.Value)).Data;
-            if (cup == null)
+            var responseData = await _cupService.GetCupByIdAsync(id.Value);
+            Cup = responseData.Data;
+
+            if (Cup == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Cup = cup;
-            }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            await _cupService.DeleteCupAsync(id.Value);
+            return RedirectToPage("./Index");
         }
     }
 }
