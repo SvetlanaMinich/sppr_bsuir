@@ -1,0 +1,54 @@
+﻿@page
+@model WEB_253503_MINICH.UI.Areas.Admin.Pages.Cups.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Cup</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cup.Name" class="control-label"></label>
+                <input asp-for="Cup.Name" class="form-control" />
+                <span asp-validation-for="Cup.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cup.Description" class="control-label"></label>
+                <input asp-for="Cup.Description" class="form-control" />
+                <span asp-validation-for="Cup.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cup.Price" class="control-label"></label>
+                <input asp-for="Cup.Price" class="form-control" />
+                <span asp-validation-for="Cup.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cup.ImgPath" class="control-label"></label>
+                <input asp-for="Cup.ImgPath" class="form-control" />
+                <span asp-validation-for="Cup.ImgPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cup.MimeImgType" class="control-label"></label>
+                <input asp-for="Cup.MimeImgType" class="form-control" />
+                <span asp-validation-for="Cup.MimeImgType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

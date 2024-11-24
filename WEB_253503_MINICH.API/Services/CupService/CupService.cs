@@ -7,14 +7,14 @@ namespace WEB_253503_MINICH.API.Services.CupService
 {
     public class CupService : ICupService
     {
-        private readonly int _maxPageSize = 20;
+        private readonly int _maxPageSize = 3;
         private readonly AppDbContext _appDbContext;
 
         public CupService(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
-        public async Task<ResponseData<Cup>> CreateCupAsync(Cup cup, IFormFile? formFile)
+        public async Task<ResponseData<Cup>> CreateCupAsync(Cup cup)
         {
             await _appDbContext.Cups.AddAsync(cup);
             await _appDbContext.SaveChangesAsync();
@@ -103,7 +103,7 @@ namespace WEB_253503_MINICH.API.Services.CupService
             return ResponseData<string>.Success(url);
         }
 
-        public async Task UpdateCupAsync(int id, Cup cup, IFormFile? formFile)
+        public async Task UpdateCupAsync(int id, Cup cup)
         {
             if (id < 0 || id != cup.Id)
             {

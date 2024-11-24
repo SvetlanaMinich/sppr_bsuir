@@ -1,33 +1,50 @@
-﻿<div class="d-flex ms-auto">
-    <a asp-controller="Cart" asp-action="Index" class="navbar-text">
-        @await Component.InvokeAsync("Cart")
-    </a>
-    <div class="dropdown ms-4">
+﻿@{
+    var name = @User
+            .Claims
+            .FirstOrDefault(c => c.Type.Equals("preferred_username", StringComparison.OrdinalIgnoreCase))?
+            .Value;
+
+    var avatar = @User
+            .Claims
+            .FirstOrDefault(c => c.Type.Equals("avatar", StringComparison.OrdinalIgnoreCase))?
+            .Value;
+}
+
+@if (User.Identity!.IsAuthenticated)
+{
+    @await Component.InvokeAsync("CartSummary")
+    <div class="dropdown ms-4 nav-color">
         <button class="btn btn-secondary dropdown-toggle"
                 type="button" id="dropdownMenuButton"
                 data-bs-toggle="dropdown"
                 aria-expanded="false">
-            User@gmail.com
-            <img src="images/default-profile-picture.png" width="14"
-                 alt="User" class="rounded" />
+            @name
+            <img src="@Url.Content("~/static/images/user.png")" height="30"
+                 alt="User" />
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <li>
                 <span class="dropdown-item-text">
-                    <img src="images/default-profile-picture.png"
-                         width="20" alt="User" class="rounded" />
-                    user@gmail.com
+                    <img src="@Url.Content("~/static/images/user.png")" alt="User"
+                         style="max-height: 200px; max-width: 150px; border-radius: 20px"/>
+                    @name
                 </span>
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
-                <form id="logoutForm" class="form-inline" method="post">
-                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark fw-bold"
-                            asp-controller="Account" asp-action="LogOut">
-                        Logout
-                    </button>
+                <form asp-controller="Account" asp-action="Logout" id="logoutForm" class="form-inline">
+                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
                 </form>
             </li>
         </ul>
     </div>
-</div>
+}
+else
+{
+    <div class="navbar-nav ms-auto">
+        <ul class="nav">
+            <li class="nav-item"><a asp-controller="Account" asp-action="Login" class="nav-item nav-link">Login</a></li>
+            <li class="nav-item"><a asp-controller="Account" asp-action="Register" class="nav-item nav-link">Register</a></li>
+        </ul>
+    </div>
+}

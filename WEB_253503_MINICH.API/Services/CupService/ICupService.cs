@@ -27,7 +27,7 @@ namespace WEB_253503_MINICH.API.Services.CupService
         /// <param name="cup">объект с новыми параметрами</param>
         /// <param name="formFile">Файл изображения</param>
         /// <returns></returns>
-        public Task UpdateCupAsync(int id, Cup cup, IFormFile? formFile);
+        public Task UpdateCupAsync(int id, Cup cup);
 
         /// <summary>
         /// Удаление объекта
@@ -42,7 +42,7 @@ namespace WEB_253503_MINICH.API.Services.CupService
         /// <param name="cup">Новый объект</param>
         /// <param name="formFile">Файл изображения</param>
         /// <returns>Созданный объект</returns>
-        public Task<ResponseData<Cup>> CreateCupAsync(Cup cup, IFormFile? formFile);
+        public Task<ResponseData<Cup>> CreateCupAsync(Cup cup);
 
         /// <summary> 
         /// Сохранить файл изображения для объекта 

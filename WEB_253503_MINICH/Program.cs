@@ -1,10 +1,13 @@
-using WEB_253503_MINICH.UI.Data;
+﻿using WEB_253503_MINICH.UI;
 using WEB_253503_MINICH.UI.Extensions;
-using Microsoft.EntityFrameworkCore;
-using WEB_253503_MINICH.UI.Models;
-using WEB_253503_MINICH.UI.Services.ApiCupService;
-using WEB_253503_MINICH.UI.Services.ApiCategoryService;
-using WEB_253503_MINICH.UI;
+using WEB_253503_MINICH.UI.Sessions;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Configuration;
+using WEB_253503_MINICH.UI.HelperClasses;
+using WEB_253503_MINICH.Domain.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,11 +23,39 @@ builder.Services.AddHttpClient("MyApiClient", client =>
     client.BaseAddress = new Uri(uriData.ApiUri);
 });
 
-string connectionStr = builder.Configuration.GetConnectionString("Default")!;
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionStr));
+builder.Services.AddHttpContextAccessor();
 
-// Registration new services
+builder.Services.AddMvc();
+
 builder.RegisterCustomServices();
+
+var keycloakData = builder.Configuration.GetSection("Keycloak").Get<KeycloakData>();
+
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    })
+    .AddCookie()
+    .AddJwtBearer()
+    .AddOpenIdConnect(options =>
+    {
+        options.Authority = $"{keycloakData.Host}/auth/realms/{keycloakData.Realm}";
+        options.ClientId = keycloakData.ClientId;
+        options.ClientSecret = keycloakData.ClientSecret;
+        options.ResponseType = OpenIdConnectResponseType.Code;
+        options.Scope.Add("openid");
+
+        options.SaveTokens = true;
+        options.RequireHttpsMetadata = false;
+
+        options.MetadataAddress = $"{keycloakData.Host}/realms/{keycloakData.Realm}/.well-known/openid-configuration";
+    });
+builder.Services.AddAuthorizationBuilder().AddPolicy("admin", p => p.RequireRole("POWER-USER"));
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -43,16 +74,18 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.MapRazorPages().RequireAuthorization("admin");
 
-app.MapControllerRoute(
-    name: "areas",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+app.UseSession();
 
-app.MapAreaControllerRoute(
-    name: "AreaAdmin",
-    areaName: "Admin",
-    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//  name: "areas",
+//pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+//app.MapAreaControllerRoute(
+//    name: "AreaAdmin",
+//    areaName: "Admin",
+//    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

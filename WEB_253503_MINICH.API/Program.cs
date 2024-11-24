@@ -1,5 +1,8 @@
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 using WEB_253503_MINICH.API.Data;
+using WEB_253503_MINICH.API.Models;
 using WEB_253503_MINICH.API.Services.CategoryService;
 using WEB_253503_MINICH.API.Services.CupService;
 
@@ -9,6 +12,27 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICupService, CupService>();
+
+var authServer = builder.Configuration
+    .GetSection("AuthServer")
+    .Get<AuthServerData>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, o =>
+    {
+        o.MetadataAddress = $"{authServer.Host}/realms/{authServer.Realm}/.well-known/openid-configuration";
+
+        o.Authority = $"{authServer.Host}/realms/{authServer.Realm}";
+
+        o.Audience = "account";
+
+        o.RequireHttpsMetadata = false;
+    });
+
+builder.Services.AddAuthorization(opt =>
+{
+    opt.AddPolicy("admin", p => p.RequireRole("POWER-USER"));
+});
 
 builder.Services.AddControllers();
 
@@ -32,6 +56,7 @@ app.UseStaticFiles(); //using static files like images
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

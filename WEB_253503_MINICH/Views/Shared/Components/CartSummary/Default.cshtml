@@ -1,0 +1,9 @@
+﻿@inject Cart cart
+
+@{
+    var totalElements = cart.CartItems.Sum(i => i.Value.Count);
+    var totalPrice = cart.CartItems.Sum(i => i.Value.Cup.Price * i.Value.Count);
+}
+<a asp-controller="Cart" asp-action="Index" class="navbar-text ms-auto">
+    @totalPrice руб <i class="fa-solid fa-cart-shopping"></i> (@totalElements)
+</a>

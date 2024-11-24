@@ -2,6 +2,7 @@
 using System.Text.Json;
 using WEB_253503_MINICH.Domain.Entities;
 using WEB_253503_MINICH.Domain.Models;
+using WEB_253503_MINICH.UI.Services.Authentication;
 using WEB_253503_MINICH.UI.Services.FileService;
 
 namespace WEB_253503_MINICH.UI.Services.ApiCupService
@@ -15,12 +16,14 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
         private readonly JsonSerializerOptions _serializerOptions;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IFileService _fileService;
+        private readonly ITokenAccessor _tokenAccessor;
 
         public ApiCupService(HttpClient httpClient, 
                                 IConfiguration configuration, 
                                 ILogger<ApiCupService> logger, 
                                 IHttpClientFactory httpClientFactory,
-                                IFileService fileService)
+                                IFileService fileService,
+                                ITokenAccessor tokenAccessor)
         {
             _pageSize = configuration.GetSection("ItemsPerPage").Value!;
             _serializerOptions = new JsonSerializerOptions()
@@ -32,6 +35,7 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
 
             _httpClient = _httpClientFactory.CreateClient("MyApiClient"); ;
             _fileService = fileService;
+            _tokenAccessor = tokenAccessor;
         }
 
         public async Task<ResponseData<Cup>> CreateCupAsync(Cup product, IFormFile? formFile)
@@ -48,6 +52,9 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
             }
 
             var url = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
+
+            await _tokenAccessor.SetAuthorizationHeaderAsync(_httpClient);
+
             var response = await _httpClient.PostAsJsonAsync(new Uri(url.ToString()),
                                                             product,
                                                             _serializerOptions);
@@ -76,6 +83,8 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
             var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
             urlString.Append($"{id}");
 
+            await _tokenAccessor.SetAuthorizationHeaderAsync(_httpClient);
+
             var response = await _httpClient.DeleteAsync(new Uri(urlString.ToString()));
 
             if (response.IsSuccessStatusCode)
@@ -95,8 +104,9 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
         public async Task<ResponseData<Cup>> GetCupByIdAsync(int? id)
         {
             var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
-            Console.WriteLine(urlString.ToString());
             urlString.Append($"{id}");
+
+            await _tokenAccessor.SetAuthorizationHeaderAsync(_httpClient);
 
             var response = await _httpClient.GetAsync(new Uri(urlString.ToString()));
 
@@ -119,13 +129,15 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
         {
             await Console.Out.WriteLineAsync(_httpClient.BaseAddress.ToString());
             // подготовка URL запроса
-            var urlString = new StringBuilder($"{_httpClient.BaseAddress.AbsoluteUri}Cups/");
+            var urlString = new StringBuilder($"{_httpClient.BaseAddress.AbsoluteUri}Cups?");
 
-            urlString.Append($"{categoryNormalizedName}?");
+            urlString.Append($"category={categoryNormalizedName}&");
             urlString.Append($"pageNo={pageNo}");
             urlString.Append($"&pageSize={_pageSize}");
 
             await Console.Out.WriteLineAsync(urlString.ToString());
+
+            await _tokenAccessor.SetAuthorizationHeaderAsync(_httpClient);
 
             // отправить запрос к API 
             var response = await _httpClient.GetAsync(new Uri(urlString.ToString()));
@@ -164,6 +176,8 @@ namespace WEB_253503_MINICH.UI.Services.ApiCupService
             }
             var urlString = new StringBuilder($"{_httpClient.BaseAddress!.AbsoluteUri}Cups/");
             urlString.Append($"{id}");
+
+            await _tokenAccessor.SetAuthorizationHeaderAsync(_httpClient);
 
             var response = await _httpClient.PutAsJsonAsync(new Uri(urlString.ToString()), product, _serializerOptions);
 

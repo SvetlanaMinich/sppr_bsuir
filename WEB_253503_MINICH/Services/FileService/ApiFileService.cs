@@ -1,14 +1,20 @@
 ﻿using System.Text;
+using WEB_253503_MINICH.UI.Services.Authentication;
 
 namespace WEB_253503_MINICH.UI.Services.FileService
 {
     public class ApiFileService : IFileService
     {
         private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public ApiFileService(HttpClient httpClient)
+        private readonly ITokenAccessor _tokenAccessor;
+
+        public ApiFileService(IHttpClientFactory httpClientFactory, ITokenAccessor tokenAccessor)
         {
-            _httpClient = httpClient;
+            _httpClientFactory = httpClientFactory;
+            _httpClient = _httpClientFactory.CreateClient("MyApiClient");
+            _tokenAccessor = tokenAccessor;
         }
         public async Task DeleteFileAsync(string fileName)
         {
@@ -20,6 +26,8 @@ namespace WEB_253503_MINICH.UI.Services.FileService
                 Method = HttpMethod.Delete,
                 RequestUri = new Uri(urlString.ToString())
             };
+
+            await _tokenAccessor.SetAuthorizationHeaderAsync(_httpClient);
 
             var response = await _httpClient.SendAsync(request);
             if (response.IsSuccessStatusCode)
@@ -47,6 +55,8 @@ namespace WEB_253503_MINICH.UI.Services.FileService
 
             // Поместить контент в запрос 
             request.Content = content;
+
+            await _tokenAccessor.SetAuthorizationHeaderAsync(_httpClient);
 
             // Отправить запрос к API 
             var response = await _httpClient.SendAsync(request);

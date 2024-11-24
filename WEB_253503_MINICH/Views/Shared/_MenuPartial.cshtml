@@ -6,10 +6,9 @@
 <div class="navbar-nav">
     <a class="badge badge-light" asp-controller="home">25350088</a>
     <div class="navbar-nav">
-        <a class="nav-item nav-link @(controllerN == "home" ? "active" : "")" asp-controller="home" asp-action="Index">Лб 1</a>
+        <a class="nav-item nav-link @(controllerN == "home" ? "active" : "")" asp-controller="Home" asp-action="Index">Лб 1</a>
         <a class="nav-item nav-link @(controllerN == "Cup" ? "active" : "")" asp-controller="Cup" asp-action="Index">Каталог</a>
-        <a asp-area="Admin" asp-page="/Product/Index"
-           class="nav-item nav-link @(area == "admin"?"active":"")">Администрирование</a>
+        <a asp-area="Admin" asp-page="/Cups/Index" class="nav-item nav-link @(area == "admin"?"active":"")">Администрирование</a>
     </div>
 </div>
 
